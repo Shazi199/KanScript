@@ -1,0 +1,14 @@
+version: build {build}
+build_script:
+- ps: MSBuild.exe KanScript.sln /p:Configuration=Release /p:OutputPath=bin\Release
+artifacts:
+- path: KanScript\bin\Release
+  name: KanScript
+deploy:
+- provider: GitHub
+  tag: v0.0.1a-$(appveyor_build_version)
+  release: KanScript_$(appveyor_build_version)
+  auth_token:
+    secure: pc1P03+Yl6tdgP5sreCTyK72uHtXdg0pM9+FPJ9nf8r6LHJHZnoxA920NsQOiuwb
+  artifact: KanScript\bin\KanScript.zip
+  prerelease: true

@@ -1,0 +1,1 @@
+A KanColleViewer's custom lua script execution environment.
