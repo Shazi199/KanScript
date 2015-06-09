@@ -1,4 +1,8 @@
 version: build {build}
+skip_tags: true
+branches:
+  only:
+  - master
 build_script:
 - ps: MSBuild.exe KanScript.sln /p:Configuration=Release /p:OutputPath=bin\Release
 artifacts:
