@@ -12,3 +12,5 @@ deploy:
     secure: pc1P03+Yl6tdgP5sreCTyK72uHtXdg0pM9+FPJ9nf8r6LHJHZnoxA920NsQOiuwb
   artifact: KanScript\bin\KanScript.zip
   prerelease: true
+  on:
+    branch: master
