@@ -4,7 +4,10 @@ branches:
   only:
   - master
 build_script:
-- ps: MSBuild.exe KanScript.sln /p:Configuration=Release /p:OutputPath=bin\Release
+- ps: >-
+    nuget.exe restore KanScript.sln
+
+    MSBuild.exe KanScript.sln /p:Configuration=Release /p:OutputPath=bin\Release
 artifacts:
 - path: KanScript\bin\Release
   name: KanScript
