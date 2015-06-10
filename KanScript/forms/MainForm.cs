@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KanScript.script;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,8 @@ namespace KanScript.forms
 {
     public partial class MainForm : Form
     {
+        private ScriptRunner scriptRunner;
+
         public MainForm()
         {
             InitializeComponent();
@@ -19,15 +22,12 @@ namespace KanScript.forms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            formHandlerTextBox.Text = this.Handle.ToString();
+            formHandlerTextBox.Text = Handle.ToString();
         }
 
         private void kcvHandlerFindButton_Click(object sender, EventArgs e)
         {
-            int handler = 0;
-            int.TryParse(kcvHandlerTextBox.Text, out handler);
-            IntPtr gameHandler = new IntPtr(handler);
-            IntPtr foundHandler = util.SystemAPI.FindKCVWindow(gameHandler);
+            IntPtr foundHandler = util.SystemAPI.FindKCVWindow(getKcvHandler());
 
             while (IntPtr.Zero.Equals(foundHandler))
             {
@@ -48,6 +48,28 @@ namespace KanScript.forms
         {
             DialogResult result = MessageBox.Show("没有找到新的KCV窗口，是否重新查找？", "KCV窗口未找到", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             return DialogResult.Yes == result;
+        }
+
+        public IntPtr getKcvHandler()
+        {
+            int handler = 0;
+            int.TryParse(kcvHandlerTextBox.Text, out handler);
+            IntPtr gameHandler = new IntPtr(handler);
+
+            return gameHandler;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (scriptRunner != null)
+            {
+                scriptRunner.runScript(luaScriptTextBox.Text);
+            }
+        }
+
+        private void scriptInitButton_Click(object sender, EventArgs e)
+        {
+            scriptRunner = new ScriptRunner(this);
         }
     }
 }
