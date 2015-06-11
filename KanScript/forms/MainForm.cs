@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -61,15 +62,20 @@ namespace KanScript.forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (scriptRunner != null)
-            {
-                scriptRunner.runScript(luaScriptTextBox.Text);
-            }
+            new Thread(runScript).Start();
         }
 
         private void scriptInitButton_Click(object sender, EventArgs e)
         {
             scriptRunner = new ScriptRunner(this);
+        }
+
+        private void runScript()
+        {
+            if (scriptRunner != null)
+            {
+                scriptRunner.runScript(luaScriptTextBox.Text);
+            }
         }
     }
 }
