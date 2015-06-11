@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -24,6 +25,7 @@ namespace KanScript.forms
         private void MainForm_Load(object sender, EventArgs e)
         {
             formHandlerTextBox.Text = Handle.ToString();
+            scriptInitButton_Click(sender, e);
         }
 
         private void kcvHandlerFindButton_Click(object sender, EventArgs e)
@@ -60,7 +62,7 @@ namespace KanScript.forms
             return gameHandler;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void scriptRunButton_Click(object sender, EventArgs e)
         {
             new Thread(runScript).Start();
         }
@@ -75,6 +77,24 @@ namespace KanScript.forms
             if (scriptRunner != null)
             {
                 scriptRunner.runScript(luaScriptTextBox.Text);
+            }
+        }
+
+        private void scriptOpenButtion_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fd = new OpenFileDialog();
+            fd.Title = "打开脚本文件";
+            fd.Filter = "脚本文件(*.lua)|*.lua|所有文件(*.*)|*.*";
+            if (fd.ShowDialog() == DialogResult.OK)
+            {
+                StringBuilder sb = new StringBuilder();
+                FileInfo file = new FileInfo(fd.FileName);
+                StreamReader sr = file.OpenText();
+                while (sr.Peek() > 0)
+                {
+                    sb.AppendLine(sr.ReadLine());
+                }
+                luaScriptTextBox.Text = sb.ToString();
             }
         }
     }

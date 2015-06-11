@@ -33,9 +33,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.kcvHandlerTextBox = new System.Windows.Forms.TextBox();
             this.kcvHandlerFindButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.scriptRunButton = new System.Windows.Forms.Button();
             this.scriptInitButton = new System.Windows.Forms.Button();
             this.luaScriptTextBox = new System.Windows.Forms.TextBox();
+            this.scriptOpenButtion = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -83,23 +84,23 @@
             this.kcvHandlerFindButton.UseVisualStyleBackColor = true;
             this.kcvHandlerFindButton.Click += new System.EventHandler(this.kcvHandlerFindButton_Click);
             // 
-            // button1
+            // scriptRunButton
             // 
-            this.button1.Location = new System.Drawing.Point(176, 223);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(141, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "运行脚本（测试）";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.scriptRunButton.Location = new System.Drawing.Point(242, 223);
+            this.scriptRunButton.Name = "scriptRunButton";
+            this.scriptRunButton.Size = new System.Drawing.Size(75, 23);
+            this.scriptRunButton.TabIndex = 5;
+            this.scriptRunButton.Text = "运行脚本";
+            this.scriptRunButton.UseVisualStyleBackColor = true;
+            this.scriptRunButton.Click += new System.EventHandler(this.scriptRunButton_Click);
             // 
             // scriptInitButton
             // 
             this.scriptInitButton.Location = new System.Drawing.Point(12, 223);
             this.scriptInitButton.Name = "scriptInitButton";
-            this.scriptInitButton.Size = new System.Drawing.Size(141, 23);
+            this.scriptInitButton.Size = new System.Drawing.Size(143, 23);
             this.scriptInitButton.TabIndex = 6;
-            this.scriptInitButton.Text = "初始化脚本";
+            this.scriptInitButton.Text = "重置脚本环境";
             this.scriptInitButton.UseVisualStyleBackColor = true;
             this.scriptInitButton.Click += new System.EventHandler(this.scriptInitButton_Click);
             // 
@@ -108,19 +109,31 @@
             this.luaScriptTextBox.Location = new System.Drawing.Point(12, 12);
             this.luaScriptTextBox.Multiline = true;
             this.luaScriptTextBox.Name = "luaScriptTextBox";
+            this.luaScriptTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.luaScriptTextBox.Size = new System.Drawing.Size(305, 205);
             this.luaScriptTextBox.TabIndex = 7;
             this.luaScriptTextBox.Text = "-- 点击主界面出击\r\nKSAPI:clickLeftMouseButton(220, 250);\r\n\r\n-- 等待2秒\r\nKSAPI:wait(2000);\r\n" +
     "\r\n-- 点击回港\r\nKSAPI:clickLeftMouseButton(70, 60);";
+            // 
+            // scriptOpenButtion
+            // 
+            this.scriptOpenButtion.Location = new System.Drawing.Point(161, 223);
+            this.scriptOpenButtion.Name = "scriptOpenButtion";
+            this.scriptOpenButtion.Size = new System.Drawing.Size(75, 23);
+            this.scriptOpenButtion.TabIndex = 8;
+            this.scriptOpenButtion.Text = "载入脚本";
+            this.scriptOpenButtion.UseVisualStyleBackColor = true;
+            this.scriptOpenButtion.Click += new System.EventHandler(this.scriptOpenButtion_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(524, 258);
+            this.Controls.Add(this.scriptOpenButtion);
             this.Controls.Add(this.luaScriptTextBox);
             this.Controls.Add(this.scriptInitButton);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.scriptRunButton);
             this.Controls.Add(this.kcvHandlerFindButton);
             this.Controls.Add(this.kcvHandlerTextBox);
             this.Controls.Add(this.label2);
@@ -144,9 +157,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox kcvHandlerTextBox;
         private System.Windows.Forms.Button kcvHandlerFindButton;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button scriptRunButton;
         private System.Windows.Forms.Button scriptInitButton;
         private System.Windows.Forms.TextBox luaScriptTextBox;
+        private System.Windows.Forms.Button scriptOpenButtion;
     }
 }
 
